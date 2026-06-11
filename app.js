@@ -251,42 +251,10 @@ radioTypes.forEach(radio => {
     });
 });
 
-// Drag and Drop Logic for Project Files
-dragDropZone.addEventListener('click', () => fileInput.click());
-
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    dragDropZone.addEventListener(eventName, preventDefaults, false);
-});
-
 function preventDefaults(e) {
     e.preventDefault();
     e.stopPropagation();
 }
-
-['dragenter', 'dragover'].forEach(eventName => {
-    dragDropZone.addEventListener(eventName, () => dragDropZone.classList.add('dragover'), false);
-});
-
-['dragleave', 'drop'].forEach(eventName => {
-    dragDropZone.addEventListener(eventName, () => dragDropZone.classList.remove('dragover'), false);
-});
-
-dragDropZone.addEventListener('drop', handleDrop, false);
-
-function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    fileInput.files = files; // Assign files to input
-    if (files.length > 0) {
-        dragDropZone.querySelector('p').textContent = `${files.length} file(s) selected for upload.`;
-    }
-}
-
-fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
-        dragDropZone.querySelector('p').textContent = `${fileInput.files.length} file(s) selected for upload.`;
-    }
-});
 
 // Screenshot Upload & Drag/Drop
 screenshotZone.addEventListener('click', () => screenshotUpload.click());
