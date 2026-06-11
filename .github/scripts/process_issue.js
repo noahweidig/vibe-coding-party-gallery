@@ -94,6 +94,10 @@ const { execSync } = require('child_process');
                 // Extract to pages folder
                 execSync(`unzip -o "${localZipDest}" -d "${pagesDir}"`);
                 
+                // CRITICAL: Fix file permissions! unzip preserves original permissions, 
+                // which can be read-only and cause git to throw "Permission denied"
+                execSync(`chmod -R 777 "${pagesDir}"`);
+                
                 // CRITICAL: Remove any nested .git directories from the extracted files 
                 // so they don't break the parent repository's git status or create submodules!
                 try {
