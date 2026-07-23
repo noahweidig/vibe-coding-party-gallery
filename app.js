@@ -430,8 +430,8 @@ submissionForm.addEventListener('submit', (e) => {
 ${description}
 
 ---
-### 📎 Files
-*Drag and drop your project \`.zip\` and screenshot image here!*
+### 📎 Files & Attachments (Optional)
+*Optional: You can drag & drop a screenshot image (.png / .jpg) and/or project \`.zip\` file directly into this issue body!*
     `.trim();
 
     const issueUrl = `https://github.com/KTorres23/vibe-coding-party-gallery/issues/new?title=${encodeURIComponent("[Submission] " + title)}&body=${encodeURIComponent(issueBody)}`;

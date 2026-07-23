@@ -309,15 +309,11 @@
                     <input type="url" id="projectUrl" placeholder="https://my-ecology-app.github.io">
                 </div>
 
+                <!-- Screenshot Attachment Instruction -->
                 <div class="form-group">
-                    <label>Project Screenshot (Optional)</label>
-                    <div id="screenshotZone" class="drag-drop-zone mini-zone">
-                        <p id="screenshotText">Click or drag screenshot image here</p>
-                        <input type="file" id="screenshotUpload" accept="image/*" class="hidden-input">
-                    </div>
-                    <div id="screenshotPreviewContainer" class="hidden">
-                        <img id="screenshotPreview" src="" alt="Screenshot preview">
-                        <button type="button" id="removeScreenshotBtn" class="btn-danger-link">Remove Image</button>
+                    <div class="drag-drop-zone mini-zone" style="background: rgba(59, 130, 246, 0.05); border-color: var(--accent-color);">
+                        <h4 style="color: var(--accent-color); margin-bottom: 0.35rem;">📸 Screenshot Attachment (Optional)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Attaching a screenshot is <strong>optional</strong>. If you have one, you can <strong>drag and drop your screenshot image (.png or .jpg) into the GitHub Issue body</strong> when it opens!</p>
                     </div>
                 </div>
 
