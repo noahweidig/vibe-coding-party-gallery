@@ -1,5 +1,22 @@
 [
     {
+        "id": 1784826945490,
+        "title": "Emoji Autocomplete Party",
+        "author": "Kalindi Fonda",
+        "authorLink": "https://github.com/KalindiFonda",
+        "sourceType": "party",
+        "party": "jun-2026",
+        "year": 2026,
+        "description": "Type : followed by text to get emoji suggestions (e.g. :fish -> 🐟). Works in text fields and rich editors. But it doesn't end there: confetti, sounds, swimming fish, growing flowers and more. Let's get the emoji party started!",
+        "screenshot": "projects/jun-2026/emoji-autocomplete-party/screenshot.png",
+        "url": "https://chromewebstore.google.com/detail/emoji-autocomplete-party/ohphclkcacfhpjkfijdnebmidhhmllma",
+        "type": "link",
+        "tags": [
+            "Vibe Coded",
+            "Ecology"
+        ]
+    },
+    {
         "id": 1783444404701,
         "title": "Eco & Evo Jobs",
         "author": "Caleb Charpentier",
