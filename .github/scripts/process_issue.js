@@ -97,9 +97,18 @@ if (isResourceSubmission) {
 
     const downloadFile = (fileUrl, dest) => {
         return new Promise((resolve, reject) => {
-            https.get(fileUrl, (res) => {
+            const options = {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+                }
+            };
+            https.get(fileUrl, options, (res) => {
                 if (res.statusCode === 301 || res.statusCode === 302) {
                     return downloadFile(res.headers.location, dest).then(resolve).catch(reject);
+                }
+                if (res.statusCode !== 200) {
+                    return reject(new Error(`Failed to download ${fileUrl}: HTTP ${res.statusCode}`));
                 }
                 const file = fs.createWriteStream(dest);
                 res.pipe(file);
@@ -129,7 +138,16 @@ if (isResourceSubmission) {
                 imgExt = extMatch ? extMatch[0].toLowerCase() : '.png';
                 const dest = path.join(projectDir, 'screenshot' + imgExt);
                 await downloadFile(fileUrl, dest);
-                screenshotPath = `projects/${party}/${slug}/screenshot${imgExt}`;
+
+                // Validation: Check if downloaded file is an HTML error page rather than a real image
+                const fileHeader = fs.readFileSync(dest, 'utf8', { flag: 'r' }).slice(0, 100);
+                if (fileHeader.includes('<!DOCTYPE') || fileHeader.includes('<html')) {
+                    console.warn("Downloaded URL returned HTML page instead of raw image data, removing invalid screenshot.");
+                    fs.unlinkSync(dest);
+                    screenshotPath = '';
+                } else {
+                    screenshotPath = `projects/${party}/${slug}/screenshot${imgExt}`;
+                }
             } else if (isZip) {
                 localZipDest = path.join(projectDir, 'project.zip');
                 await downloadFile(fileUrl, localZipDest);
